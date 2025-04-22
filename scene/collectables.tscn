@@ -45,7 +45,7 @@ position = Vector2(472, 452)
 scale = Vector2(1.46875, 1.40625)
 sprite_frames = SubResource("SpriteFrames_anloe")
 autoplay = "default"
-frame_progress = 0.0515806
+frame_progress = 0.644591
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(469, 455)

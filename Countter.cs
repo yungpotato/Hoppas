@@ -5,10 +5,29 @@ public partial class Countter : Node
 {
     public static int Points { get; private set; } = 0;
 
-    // Funktio pisteiden kasvattamiseen
+	    private static Label _pointsLabel;
+
+    public override void _Ready()
+    {
+        // Etsitään Label‑solmu pelinäkymästä
+        // Oletetaan, että pääscene-rootin nimi on "Node"
+        // ja että rakenne on: Node → halp (CanvasLayer) → Panel → Label
+        _pointsLabel = GetTree()
+            .Root
+            .GetNode<Node>("Node")      // pääscene
+            .GetNode<Label>("halp/Panel/Label");
+
+        // Aseta aluksi nollaksi
+        _pointsLabel.Text = Points.ToString();
+    }
+
+
     public static void AddPoint()
     {
         Points++;
-        GD.Print($"Pisteet: {Points}");
+        GD.Print($"Kukkaset: {Points}");
+
+		if (_pointsLabel != null)
+           	_pointsLabel.Text = Points.ToString();
     }
 }
