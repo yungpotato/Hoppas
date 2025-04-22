@@ -1,0 +1,87 @@
+[gd_scene load_steps=12 format=3 uid="uid://beoaunwkkfs3i"]
+
+[ext_resource type="Texture2D" uid="uid://wm4bdjm8xdnf" path="res://art/potmandefault.png" id="2_kg2as"]
+[ext_resource type="Texture2D" uid="uid://dx00wow4vylvr" path="res://art/potmanjump.png" id="3_58kti"]
+[ext_resource type="Texture2D" uid="uid://tbw0s2tcepim" path="res://art/potmananim.png" id="4_aoh4s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vsiir"]
+atlas = ExtResource("2_kg2as")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24r4t"]
+atlas = ExtResource("2_kg2as")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p448m"]
+atlas = ExtResource("2_kg2as")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4v003"]
+atlas = ExtResource("4_aoh4s")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2vsm"]
+atlas = ExtResource("4_aoh4s")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83u5r"]
+atlas = ExtResource("4_aoh4s")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_681cw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vsiir")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_24r4t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p448m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_58kti")
+}],
+"loop": true,
+"name": &"hyppy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4v003")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o2vsm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83u5r")
+}],
+"loop": true,
+"name": &"juoksu",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_50u6q"]
+radius = 41.0
+height = 96.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+
+[node name="hahmo" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(53.0001, 578)
+scale = Vector2(1.42188, 1.39063)
+sprite_frames = SubResource("SpriteFrames_681cw")
+animation = &"hyppy"
+autoplay = "default"
+frame_progress = 0.374624
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(53, 577)
+shape = SubResource("CapsuleShape2D_50u6q")
