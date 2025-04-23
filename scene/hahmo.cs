@@ -6,12 +6,12 @@ public partial class hahmo : CharacterBody2D
     public const float Speed = 300.0f;
     public const float JumpVelocity = -400.0f;
 
-    // Lisätty kenttä AnimatedSprite2D:lle
+
     private AnimatedSprite2D _sprite;
 
     public override void _Ready()
     {
-        // Hae lapsisolmu joka pyörittää animaatioita
+    // Haetaa lapsisolmu joka hoitaa animaatioita
         _sprite = GetNode<AnimatedSprite2D>("hahmo");
     }
 
@@ -19,43 +19,43 @@ public partial class hahmo : CharacterBody2D
     {
         Vector2 velocity = Velocity;
 
-        // --- Gravitaatio ---
+        // Gravitaatio 
         if (!IsOnFloor())
             velocity += GetGravity() * (float)delta;
 
-        // --- Hyppy ---
+        // Hyppy
         if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
             velocity.Y = JumpVelocity;
 
-        // --- Vaaka-liike ---
+        // Sivuttasliike
         Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
         if (direction != Vector2.Zero)
             velocity.X = direction.X * Speed;
         else
             velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
 
-        // Aseta uusi velocity ja liiku
+        // Aseta uusi velocity ja movearound
         Velocity = velocity;
         MoveAndSlide();
 
-        // --- Animaatiot ---
+        // Animaatiot tästä
         if (!IsOnFloor())
         {
-            // Pelaaja ilmassa → hyppy-kuva (Single-frame tai animaatio “hyppy”)
+        // Pelaaja ilmassa - hyppykuva "hyppy"
             _sprite.Play("hyppy");
         }
         else if (Math.Abs(velocity.X) > 0.1f)
         {
-            // Maassa & liikkeessä → juoksuanimaatio “juoksu”
+        // Maassa ja liikkeessä - juoksuanimaatio “juoksu”
             _sprite.Play("juoksu");
         }
         else
         {
-            // Maassa & paikallaan → oletus-animaatio “default”
+        // Maassa ja paikallaan - normianimaatio “default”
             _sprite.Play("default");
         }
 
-        // --- Käännös katselusuuntaan ---
+        // Hahmon kääntö menosuuntaanpäin
         if (velocity.X < 0)
             _sprite.FlipH = true;
         else if (velocity.X > 0)

@@ -12,10 +12,10 @@ public partial class Countter : Node
   
         _pointsLabel = GetTree()
             .Root
-            .GetNode<Node>("Node")      // pääscene
+            .GetNode<Node>("Node")
             .GetNode<Label>("halp/Panel/Label");
 
-        // Aseta aluksi nollaksi
+
         _pointsLabel.Text = Points.ToString();
     }
 

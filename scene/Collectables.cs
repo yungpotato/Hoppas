@@ -14,7 +14,7 @@ public partial class Collectables : Area2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	if (body is CharacterBody2D)
 	{
-
+		// Huudellaan metodia
 		Countter.AddPoint();
 
 		QueueFree();
