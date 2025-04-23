@@ -9,9 +9,7 @@ public partial class Countter : Node
 
     public override void _Ready()
     {
-        // Etsitään Label‑solmu pelinäkymästä
-        // Oletetaan, että pääscene-rootin nimi on "Node"
-        // ja että rakenne on: Node → halp (CanvasLayer) → Panel → Label
+  
         _pointsLabel = GetTree()
             .Root
             .GetNode<Node>("Node")      // pääscene

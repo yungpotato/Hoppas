@@ -3,32 +3,43 @@ using System;
 
 public partial class Final : Area2D
 {
-    Label _winLabel;
+    // Staattinen kenttä, johon talletamme Label-viitteen
+    private static Label _winlabel;
 
     public override void _Ready()
     {
-        // 1) kytketään signal
+        // Liitetään signaali kuuntelemaan osumia
         BodyEntered += OnBodyEntered;
-
-        // 2) haetaan WinLabel suoraan CurrentScene:n juuresta
-        var sceneRoot = GetTree().CurrentScene as Node;
-        _winLabel = sceneRoot.GetNode<Label>("halp/Panel/WinLabel");
-        _winLabel.Visible = false;
-
-        GD.Print("Final valmis, label löytyi: ", _winLabel != null);
     }
 
     private void OnBodyEntered(Node body)
     {
-        GD.Print("Final: BodyEntered fired! osunut: ", body);
         if (body is CharacterBody2D)
         {
-            GD.Print("Pelaaja maalissa!");
-            _winLabel.Text = "Voitit pelin!";
-            _winLabel.Visible = true;
-
-            // halutessasi pysäytä peli
+            ShowWinText();
+            // halutessasi pysäytä peli:
             GetTree().Paused = true;
         }
+    }
+
+    private void ShowWinText()
+    {
+        // Hae Label-node vain kerran
+        if (_winlabel == null)
+        {
+            // Nykyisen scene-rootin läpi löydät halp/Panel/WinLabel
+            var sceneRoot = GetTree().CurrentScene as Node;
+            _winlabel = sceneRoot.GetNodeOrNull<Label>("halp/Panel/winlabel");
+
+            if (_winlabel == null)
+            {
+                GD.PrintErr("Final: ei löytänyt WinLabel-nodea polulla halp/Panel/winlabel");
+                return;
+            }
+        }
+
+        // Aseta teksti ja tee näkyväksi
+        _winlabel.Text = "ONNEOLKOO VOITIT PELIN!";
+        _winlabel.Visible = true;
     }
 }
