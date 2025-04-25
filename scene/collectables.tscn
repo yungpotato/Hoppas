@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://brixuxl23rd6u"]
 
-[ext_resource type="Script" path="res://scene/Collectables.cs" id="1_iipsw"]
+[ext_resource type="Script" path="res://Collectables.cs" id="1_iipsw"]
 [ext_resource type="Texture2D" uid="uid://5mlnmeriq7x7" path="res://art/collectable.png" id="1_yu6ho"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yx8al"]

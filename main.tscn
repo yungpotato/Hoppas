@@ -13,7 +13,7 @@
 [node name="tausta2" type="TextureRect" parent="."]
 offset_left = -6.0
 offset_top = -5.0
-offset_right = 2681.0
+offset_right = 2682.0
 offset_bottom = 673.0
 texture = ExtResource("4_8giqk")
 
